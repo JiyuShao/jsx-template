@@ -1,0 +1,50 @@
+{
+  "name": "jsx-template-monorepo",
+  "version": "1.0.0",
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "clean": "lerna clean",
+    "release": "lerna publish",
+    "lint": "npm run lint:es && npm run lint:prettier",
+    "lint:es": "eslint --ext .ts ./ --cache --quiet",
+    "lint:prettier": "prettier --list-different \"**/*.{ts,json,yml,yaml,md}\"",
+    "fix": "npm run fix:es && npm run fix:prettier",
+    "fix:es": "eslint --ext .ts ./ --cache --quiet --fix",
+    "fix:prettier": "prettier --write \"**/*.{ts,json,yml,yaml,md}\"",
+    "test": "jest",
+    "coverage": "jest --coverage",
+    "coveralls": "jest --coverage --coverageReporters=text-lcov | coveralls",
+    "watch": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JiyuShao/jsx-template.git"
+  },
+  "author": "Jiyu Shao",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JiyuShao/jsx-template/issues"
+  },
+  "homepage": "https://github.com/JiyuShao/jsx-template#readme",
+  "devDependencies": {
+    "@types/jest": "^24.0.21",
+    "@typescript-eslint/eslint-plugin": "^2.10.0",
+    "@typescript-eslint/parser": "^2.10.0",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.5.1",
+    "eslint-config-prettier": "^6.4.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-prettier": "^3.1.1",
+    "husky": "^3.0.9",
+    "jest": "^24.9.0",
+    "lerna": "^3.18.1",
+    "lint-staged": "^9.4.2",
+    "prettier": "^1.18.2",
+    "ts-jest": "^24.1.0",
+    "tslint": "^5.20.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-eslint-rules": "^5.4.0",
+    "tslint-plugin-prettier": "^2.0.1",
+    "typescript": "^3.6.4"
+  }
+}
