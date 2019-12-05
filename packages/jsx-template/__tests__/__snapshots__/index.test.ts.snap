@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`\`compile\` should work with functional component function return html 1`] = `"<div><h1>Functional Component:</h1><p>Functional Component Content</p></div>"`;
+
+exports[`\`compile\` should work with functional component with parameters function return html 1`] = `"<div><h1>Functional Component With Params:</h1><p>this is custom content</p></div>"`;

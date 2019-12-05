@@ -1,3 +1,12 @@
+/*
+ * transform jsx code string to js code string
+ *
+ * @Author: Jiyu Shao
+ * @Date: 2019-12-05 16:51:56
+ * @Last Modified by: Jiyu Shao
+ * @Last Modified time: 2019-12-05 16:53:31
+ */
+
 import { transform } from '@babel/core';
 
 interface Options {

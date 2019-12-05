@@ -3,9 +3,9 @@ import * as path from 'path';
 import { isValidElement } from 'preact';
 import jsxTemplateTransform from '../src/index';
 
-describe('Simple functional component', () => {
+describe('`jsx-templlate-transform` should work with functional component', () => {
   const code = fs.readFileSync(
-    path.resolve(__dirname, './fixtures/simple-functional-component.jsx'),
+    path.resolve(__dirname, './fixtures/functional-component.jsx'),
     'utf-8'
   );
   const parsedCode = (jsxTemplateTransform(code) as any).code;

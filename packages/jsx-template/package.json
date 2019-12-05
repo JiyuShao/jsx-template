@@ -1,0 +1,13 @@
+{
+  "name": "jsx-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/index.ts",
+  "author": "Jiyu Shao",
+  "license": "MIT",
+  "dependencies": {
+    "jsx-template-transform": "^1.0.0",
+    "preact": "^10.0.5",
+    "preact-render-to-string": "^5.1.1"
+  }
+}
