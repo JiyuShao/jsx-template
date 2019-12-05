@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { isValidElement } from 'preact';
-import jsxTemplateLoad from '../';
+import jsxTemplateLoad from '../src/index';
 
 describe('Simple functional component', () => {
   const code = fs.readFileSync(

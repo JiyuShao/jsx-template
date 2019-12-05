@@ -2,7 +2,7 @@
   "name": "jsx-template-transform",
   "version": "1.0.0",
   "description": "",
-  "main": "./index.ts",
+  "main": "./src/index.ts",
   "author": "Jiyu Shao",
   "license": "MIT",
   "dependencies": {
