@@ -1,5 +1,3 @@
-import Preact from 'preact';
-
 export default () => {
   return (
     <div>
