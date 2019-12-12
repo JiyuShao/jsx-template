@@ -1,14 +1,13 @@
-import * as fs from 'fs';
 import * as path from 'path';
 import { isValidElement } from 'preact';
 import jsxTemplateTransform from '../src/index';
 
 describe('`jsx-templlate-transform` should work with functional component', () => {
-  const code = fs.readFileSync(
-    path.resolve(__dirname, './fixtures/functional-component.jsx'),
-    'utf-8'
+  const filename = path.resolve(
+    __dirname,
+    './fixtures/functional-component.jsx'
   );
-  const parsedCode = (jsxTemplateTransform(code) as any).code;
+  const parsedCode = (jsxTemplateTransform(filename) as any).code;
 
   it('eval transformed code is a function', () => {
     expect(typeof eval(parsedCode) === 'function').toBe(true);

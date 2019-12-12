@@ -4,9 +4,9 @@
  * @Author: Jiyu Shao
  * @Date: 2019-12-05 16:51:56
  * @Last Modified by: Jiyu Shao
- * @Last Modified time: 2019-12-05 16:53:31
+ * @Last Modified time: 2019-12-12 17:51:37
  */
-
+import * as fs from 'fs';
 import { transform } from '@babel/core';
 
 interface Options {
@@ -21,16 +21,25 @@ interface Options {
   importPrefix?: string;
 }
 
-export default (code: string, options: Options = {}) => {
+const jsxTemplateTransform = (filePath: string, options: Options = {}) => {
   const {
     transformOptions = {},
     importPrefix = "import { h } from 'preact';\n",
   } = options;
 
+  const code = fs.readFileSync(filePath, 'utf-8');
   const codeWithPrefix = `${importPrefix}${code}`;
 
   return transform(codeWithPrefix, {
-    presets: ['@babel/preset-env'],
+    filename: filePath,
+    presets: [
+      [
+        '@babel/preset-env',
+        {
+          modules: 'commonjs',
+        },
+      ],
+    ],
     plugins: [
       [
         '@babel/plugin-transform-react-jsx',
@@ -39,6 +48,24 @@ export default (code: string, options: Options = {}) => {
           ...transformOptions,
         },
       ],
+      [
+        'babel-plugin-transform-imports-with-loader',
+        {
+          rules: {
+            test: /\.jsx/,
+            unserializeFunc: 'eval',
+            transform: (_: string, filePath: string) => {
+              const parsedCode = (jsxTemplateTransform(
+                filePath,
+                options
+              ) as any).code;
+              return parsedCode;
+            },
+          },
+        },
+      ],
     ],
   });
 };
+
+export default jsxTemplateTransform;

@@ -1,4 +1,4 @@
-import FunctionalComponent from './functional-component';
+import FunctionalComponent from './functional-component.jsx';
 
 export default () => {
   return (

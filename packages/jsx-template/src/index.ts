@@ -4,25 +4,27 @@
  * @Author: Jiyu Shao
  * @Date: 2019-12-05 16:53:38
  * @Last Modified by: Jiyu Shao
- * @Last Modified time: 2019-12-05 17:22:03
+ * @Last Modified time: 2019-12-12 18:55:43
  */
 
 import { render as renderToString } from 'preact-render-to-string';
 import jsxTemplateTransform from 'jsx-template-transform';
 
 /**
- * compile code into a function
- * @param {string} code jsx code
+ * compile template file into a function
+ * @param {string} filename jsx template
  * @returns {Function} function that can return html
  */
-export const compile = (code: string) => {
-  // transform JSX code string
-  const transformedCode = jsxTemplateTransform(code);
+export const compileFile = (filename: string) => {
+  // transform JSX template string
+  const transformedCode = jsxTemplateTransform(filename);
 
   // get JS code string
   let finalCode: string;
   if (!transformedCode) {
-    throw new Error('jsx-template: compile jsxTemplateTransform code empty');
+    throw new Error(
+      'jsx-template: compileFile jsxTemplateTransform code empty'
+    );
   } else {
     finalCode = transformedCode.code ? transformedCode.code : '';
   }
@@ -30,7 +32,12 @@ export const compile = (code: string) => {
   // return function
   return (...args: any[]) => {
     // get codeFunc from JS code string
-    const codeFunc = eval(finalCode);
+    let codeFunc;
+    try {
+      codeFunc = eval(finalCode);
+    } catch (_) {
+      console.error(finalCode);
+    }
 
     // exec codeFunc
     const reactElement = codeFunc(...args);
