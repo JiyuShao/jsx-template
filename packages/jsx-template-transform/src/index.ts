@@ -4,7 +4,7 @@
  * @Author: Jiyu Shao
  * @Date: 2019-12-05 16:51:56
  * @Last Modified by: Jiyu Shao
- * @Last Modified time: 2019-12-12 17:51:37
+ * @Last Modified time: 2019-12-23 16:03:12
  */
 import * as fs from 'fs';
 import { transform } from '@babel/core';
@@ -21,6 +21,11 @@ interface Options {
   importPrefix?: string;
 }
 
+/**
+ * transfom jsx js file into js string
+ * @param {string} filePath processing file path
+ * @param {Options} options jsx template transform options
+ */
 const jsxTemplateTransform = (filePath: string, options: Options = {}) => {
   const {
     transformOptions = {},

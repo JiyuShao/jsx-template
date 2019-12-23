@@ -7,13 +7,20 @@ describe('`jsx-templlate-transform` should work with functional component', () =
     __dirname,
     './fixtures/functional-component.jsx'
   );
-  const parsedCode = (jsxTemplateTransform(filename) as any).code;
 
-  it('eval transformed code is a function', () => {
-    expect(typeof eval(parsedCode) === 'function').toBe(true);
+  it('eval transformed code is a function that return valid react element', () => {
+    const parsedCode = (jsxTemplateTransform(filename) as any).code;
+    expect(isValidElement(eval(parsedCode)())).toBe(true);
   });
 
-  it('function return valid react element', () => {
+  it('`options.importPrefix` and `options.importPrefix` should work', () => {
+    const parsedCode = (jsxTemplateTransform(filename, {
+      transformOptions: {
+        pragma: 'createElement',
+      },
+      importPrefix: "import { createElement } from 'preact';\n",
+    }) as any).code;
+    expect(parsedCode).toContain('createElement');
     expect(isValidElement(eval(parsedCode)())).toBe(true);
   });
 });
